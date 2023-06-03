@@ -1,7 +1,7 @@
 {
-  "name": "practice-app",
+  "name": "node-practice-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Saturday Session practicing node and npm with Tim McKiernan.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"WE GOT NO TESTS\" && exit 1",
@@ -10,7 +10,7 @@
     "cool": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michael Kleemoff",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
