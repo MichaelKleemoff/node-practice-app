@@ -12,9 +12,10 @@ function checkWord(word) {
         return;
       }
       // returns a boolean
-      const misspelled = !dictionary.spellCheck(word);
-      // if the word is misspelled
-      if (misspelled) {
+      /// bad spelled word = false;
+      const isMisspelled = !dictionary.spellCheck(word);
+      // if the word is isMisspelled
+      if (isMisspelled) {
         // Provide user feedback
         console.log(`The word ${word} is incorrect.`);
         // Use the spellchecker to get suggested correct words
@@ -28,8 +29,46 @@ function checkWord(word) {
     });
   }
 
+  // we need to check an entire phrase 
+    // function accepts a string;
+    // function should return a true if all words are spelled correctly
+    // should return false otherwise 
+function checkWords (words) {
+  SpellChecker.getDictionary("en-US", function (err, dictionary) {
+    if (err) {
+      console.log("There was an error", err);
+      return;
+    }
+    let splitWords = words.split(" ");
+    let allWordsCorrect = true;
+    // our program thinks an entire phrase is one word
+    // how do we do what we did above for every item in our sentence?
+    // we need an array
+    splitWords.forEach((word) => {
+      // if the word is spelled incorrect isMisspelled will be TRUE
+      const isMisspelled = !dictionary.spellCheck(word);
+      // if the word is isMisspelled
+      if (isMisspelled) {
+        allWordsCorrect = false;
+        // Provide user feedback
+        console.log(`The word ${word} is incorrect.`);
+        // Use the spellchecker to get suggested correct words
+        const suggestions = dictionary.getSuggestions(word);
+        // Log the words as a string
+        console.log(`Did you mean:`, suggestions.join(" "));
+      } 
+    });
+    if (allWordsCorrect) {
+      console.log("your phrase is all spelled correctly")
+    }
+  })
+};
+
+
+
 module.exports = {
-  checkWord
+  checkWord,
+  checkWords
 }
 
 
